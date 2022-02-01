@@ -13,26 +13,22 @@ spec:
       version: 2.6.3
       sourceRef:
         kind: HelmRepository
-        name: rancher-latest
+        name: rancher-charts
         namespace: flux-system
-      interval: 5m
+      interval: 3m
   values:
     hostname: "rancher.${SECRET_DOMAIN}"
     ingress:
-      main:
-        enabled: true
-        ingressClassName: "traefik"
-        annotations:
-          cert-manager.io/cluster-issuer: "letsencrypt-production"
-          hajimari.io/appName: "rancher"
-          hajimari.io/enable: "true"
-          traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
-        hosts:
-          - host: "rancher.${SECRET_DOMAIN}"
-            paths:
-              - path: /
-                pathType: Prefix
-        tls:
-          - hosts:
-              - "rancher.${SECRET_DOMAIN}"
-            secretName: "rancher-tls"
+      enabled: true
+      hostname: "rancher.${SECRET_DOMAIN}"
+      extraAnnotations:
+        cert-manager.io/cluster-issuer: "letsencrypt-production"
+        hajimari.io/appName: "rancher"
+        hajimari.io/enable: "true"
+        traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
+      tls:
+        secretName: "rancher-tls"
+        source: letsEncrypt
+    letsEncrypt:
+      ingress:
+        class: "traefik"
