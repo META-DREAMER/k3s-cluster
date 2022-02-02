@@ -2,7 +2,7 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
   - default
-  - cattle-system
+#  - cattle-system
   - kube-system
   - networking
   - system-upgrade

@@ -20,7 +20,6 @@ spec:
     hostname: "rancher.${SECRET_DOMAIN}"
     ingress:
       enabled: true
-      hostname: "rancher.${SECRET_DOMAIN}"
       extraAnnotations:
         cert-manager.io/cluster-issuer: "letsencrypt-production"
         hajimari.io/appName: "rancher"
@@ -30,5 +29,6 @@ spec:
         secretName: "rancher-tls"
         source: letsEncrypt
     letsEncrypt:
+      environment: letsencrypt-production
       ingress:
         class: "traefik"
