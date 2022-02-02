@@ -30,5 +30,6 @@ spec:
         secretName: "rancher-tls"
         source: letsEncrypt
     letsEncrypt:
+      email: "${SECRET_CLOUDFLARE_EMAIL}"
       ingress:
         class: "traefik"
