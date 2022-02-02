@@ -61,7 +61,6 @@ spec:
       web:
         redirectTo: websecure
       websecure:
-        port: 443
         tls:
           enabled: true
           options: "default"
